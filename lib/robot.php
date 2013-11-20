@@ -90,10 +90,7 @@ class Robot
         }
 
         if ($this->aspect == array_search('NORTH', $this->compass)) {
-            $newLocation = [
-                'x' => $this->location['x'],
-                'y' => $this->location['y'] + 1
-            ];
+            $newLocation = $this->getNewLocation(0, 1);
 
             $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
 
@@ -103,10 +100,7 @@ class Robot
                 return;
             }
         } elseif ($this->aspect == array_search('EAST', $this->compass)) {
-            $newLocation = [
-                'x' => $this->location['x'] + 1,
-                'y' => $this->location['y']
-            ];
+            $newLocation = $this->getNewLocation(1, 0);
 
             $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
 
@@ -116,10 +110,7 @@ class Robot
                 return;
             }
         } elseif ($this->aspect == array_search('SOUTH', $this->compass)) {
-            $newLocation = [
-                'x' => $this->location['x'],
-                'y' => $this->location['y'] - 1
-            ];
+            $newLocation = $this->getNewLocation(0, -1);
 
             $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
 
@@ -129,10 +120,7 @@ class Robot
                 return;
             }
         } elseif ($this->aspect == array_search('WEST', $this->compass)) {
-            $newLocation = [
-                'x' => $this->location['x'] - 1,
-                'y' => $this->location['y']
-            ];
+            $newLocation = $this->getNewLocation(-1, 0);
 
             $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
 
@@ -157,5 +145,15 @@ class Robot
         } else {
             return true;
         }
+    }
+
+    private function getNewLocation($xOffset, $yOffset)
+    {
+        $newLocation = [
+            'x' => $this->location['x'] + $xOffset,
+            'y' => $this->location['y'] + $yOffset
+        ];
+
+        return $newLocation;
     }
 }
