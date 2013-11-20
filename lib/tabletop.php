@@ -12,7 +12,6 @@ class Tabletop
         $this->yMax = $yMax;
 
         $this->tabletop = array_fill(0, $xMax, array_fill(0, $yMax, new Square));
-
     }
 
     public function getXMax()
@@ -23,5 +22,10 @@ class Tabletop
     public function getYMax()
     {
         return sizeof($this->tabletop[0]);
+    }
+
+    public function getSquare($x, $y)
+    {
+        return $this->tabletop[$x][$y];
     }
 }

@@ -8,10 +8,12 @@ class TabletopTest extends \Codeception\TestCase\Test
    /**
     * @var \CodeGuy
     */
-    protected $codeGuy;
+    protected $codeGuy,
+              $tabletop;
 
     protected function _before()
     {
+        $this->tabletop = new Tabletop(5, 5);
     }
 
     protected function _after()
@@ -21,18 +23,21 @@ class TabletopTest extends \Codeception\TestCase\Test
     // tests
     public function testNew()
     {
-        $this->assertInstanceOf('Tabletop', new Tabletop(5, 5));
+        $this->assertInstanceOf('Tabletop', $this->tabletop);
     }
 
     public function testGetXMax()
     {
-        $tabletop = new Tabletop(5, 5);
-        $this->assertEquals(5, $tabletop->getXMax());
+        $this->assertEquals(5, $this->tabletop->getXMax());
     }
 
     public function testGetYMax()
     {
-        $tabletop = new Tabletop(5, 5);
-        $this->assertEquals(5, $tabletop->getYMax());
+        $this->assertEquals(5, $this->tabletop->getYMax());
+    }
+
+    public function testGetSquare()
+    {
+        $this->assertInstanceOf('Square', $this->tabletop->getSquare(2, 3));
     }
 }
