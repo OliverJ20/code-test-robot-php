@@ -2,7 +2,7 @@
 
 Code test in PHP this time.
 
-Problem description can be found in CodeTest-Robot.pdf
+Problem description can be found in docs/CodeTest-Robot.pdf
 
 #### Environment Details
 
