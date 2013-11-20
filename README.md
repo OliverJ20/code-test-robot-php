@@ -12,11 +12,11 @@ PHP 5.3.16
 
 To see the code run:
 
-1. cd to robot-php folder.
-2. php runRobotApp.php testdata/file-1 {testdata/file-2 .. testdata/file-n} Minimum of 1 file, up to n number of files.
+1. cd to code-test-robot-php folder.
+2. php runRobotApp.php testdata/file-1 {testdata/file-2 ... testdata/file-n} Minimum of 1 file, up to n number of files.
 
 To run the tests:
-1. cd to the robot-php folder.
+1. cd to the code-test-robot-php folder.
 2. php codecept.phar run tests/unit/ 
 
 Please see the below list for details about the various test data files
