@@ -2,9 +2,9 @@
 
 class Robot
 {
-    private $tabletop = NULL,
-            $aspect = NULL,
-            $location = NULL,
+    private $tabletop = null,
+            $aspect = null,
+            $location = null,
             $compass = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
 
     public function __construct($tabletop)
@@ -12,77 +12,150 @@ class Robot
         $this->tabletop = $tabletop;
 
         $this->location = [
-            'x' => NULL,
-            'y' => NULL
+            'x' => null,
+            'y' => null
         ];
     }
 
     public function report()
     {
-        if($this->hasBeenPlaced())
-        {
-            return 'Output: ' . $this->location['x'] . ', ' . $this->location['y'] . ', ' . $this->compass[$this->aspect];
-        }
-        else
-        {
+        if ($this->hasBeenPlaced()) {
+            $output = 'Output: '
+                    . $this->location['x'] . ', '
+                    . $this->location['y'] . ', '
+                    . $this->compass[$this->aspect];
+
+            return $output;
+        } else {
             return '';
         }
     }
 
     public function place($x, $y, $aspectInString)
     {
-        $tmpAspect = array_search($aspectInString, $this->compass);
+        $tmpAspectIndex = array_search($aspectInString, $this->compass);
 
-        if($this->tabletop->isValidXY($x, $y) && $tmpAspect !== FALSE)
-        {
+        if ($this->tabletop->isValidXY($x, $y) && $tmpAspectIndex !== false) {
             $this->location['x'] = $x;
             $this->location['y'] = $y;
 
-            $this->aspect = $tmpAspect;
-        }
-        else
+            $this->aspect = $tmpAspectIndex;
+        } else {
             return;
+        }
     }
 
     public function left()
     {
-        if(!$this->hasBeenPlaced())
-        {
+        if (!$this->hasBeenPlaced()) {
             return;
-        }
-        elseif($this->tabletop->isValidXY($this->location['x'], $this->location['y'], $this->compass[$this->aspect]))
-        {
+        } elseif ($this->tabletop->isValidXY(
+            $this->location['x'],
+            $this->location['y'],
+            $this->compass[$this->aspect])
+        ){
             $this->aspect -= 1;
 
-            if($this->aspect < 0)
+            if ($this->aspect < 0) {
                 $this->aspect = 3;
-        }
-        else
+            }
+        } else {
             return;
+        }
     }
 
     public function right()
     {
-        if(!$this->hasBeenPlaced())
-        {
+        if (!$this->hasBeenPlaced()) {
             return;
-        }
-        elseif($this->tabletop->isValidXY($this->location['x'], $this->location['y'], $this->compass[$this->aspect]))
-        {
+        } elseif ($this->tabletop->isValidXY(
+            $this->location['x'],
+            $this->location['y'],
+            $this->compass[$this->aspect])
+        ){
             $this->aspect += 1;
 
-            if($this->aspect >= sizeof($this->compass))
+            if ($this->aspect >= sizeof($this->compass)) {
                 $this->aspect = 0;
+            }
+        } else {
+            return;
         }
-        else
-            return;    
+    }
+
+    public function move()
+    {
+        if (!$this->hasBeenPlaced()) {
+            return;
+        }
+
+        if ($this->aspect == array_search('NORTH', $this->compass)) {
+            $newLocation = [
+                'x' => $this->location['x'],
+                'y' => $this->location['y'] + 1
+            ];
+
+            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
+
+            if ($square !== null) {
+                $this->location = $newLocation;
+            } else {
+                return;
+            }
+        } elseif ($this->aspect == array_search('EAST', $this->compass)) {
+            $newLocation = [
+                'x' => $this->location['x'] + 1,
+                'y' => $this->location['y']
+            ];
+
+            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
+
+            if ($square !== null) {
+                $this->location = $newLocation;
+            } else {
+                return;
+            }
+        } elseif ($this->aspect == array_search('SOUTH', $this->compass)) {
+            $newLocation = [
+                'x' => $this->location['x'],
+                'y' => $this->location['y'] - 1
+            ];
+
+            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
+
+            if ($square !== null) {
+                $this->location = $newLocation;
+            } else {
+                return;
+            }
+        } elseif ($this->aspect == array_search('WEST', $this->compass)) {
+            $newLocation = [
+                'x' => $this->location['x'] - 1,
+                'y' => $this->location['y']
+            ];
+
+            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
+
+            if ($square !== null) {
+                $this->location = $newLocation;
+            } else {
+                return;
+            }
+        } else {
+            return;
+        }
     }
 
     private function hasBeenPlaced()
     {
-        if($this->location['x'] === NULL || $this->location['y'] === NULL || $this->aspect === NULL)
-            return FALSE;
-        else
-            return TRUE;
+        $anyNull =  $this->location['x'] === null ||
+                    $this->location['y'] === null ||
+                    $this->aspect === null;
+
+        if ($anyNull) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

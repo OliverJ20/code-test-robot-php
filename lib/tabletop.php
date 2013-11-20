@@ -2,7 +2,7 @@
 
 class Tabletop
 {
-    private $tabletop = NULL;
+    private $tabletop = null;
 
     public function __construct($xMax = 1, $yMax = 1)
     {
@@ -21,19 +21,27 @@ class Tabletop
 
     public function getSquare($x, $y)
     {
-        if($this->isValidXY($x, $y))
+        if ($this->isValidXY($x, $y)) {
             return $this->tabletop[$x][$y];
-        else
-            return NULL;
+        } else {
+            return null;
+        }
     }
 
     public function isValidXY($x, $y)
     {
-        if( is_int($x) && is_int($y) &&
-            $x >= 0 && $y >= 0 &&
-            $x < $this->getXMax() && $y < $this->getYMax())
-            return TRUE;
-        else
-            return FALSE;
+        $isInt =    is_int($x) &&
+                    is_int($y);
+
+        $withinRange =  $x >= 0 &&
+                        $y >= 0 &&
+                        $x < $this->getXMax() &&
+                        $y < $this->getYMax();
+
+        if ($isInt && $withinRange) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
