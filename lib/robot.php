@@ -92,9 +92,12 @@ class Robot
         if ($this->aspect == array_search('NORTH', $this->compass)) {
             $newLocation = $this->getNewLocation(0, 1);
 
-            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
+            $square =   $this->tabletop->getSquare(
+                            $newLocation['x'],
+                            $newLocation['y']
+                        );
 
-            if ($square !== null) {
+            if ($this->isValidSquare($newLocation)) {
                 $this->location = $newLocation;
             } else {
                 return;
@@ -102,9 +105,7 @@ class Robot
         } elseif ($this->aspect == array_search('EAST', $this->compass)) {
             $newLocation = $this->getNewLocation(1, 0);
 
-            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
-
-            if ($square !== null) {
+            if ($this->isValidSquare($newLocation)) {
                 $this->location = $newLocation;
             } else {
                 return;
@@ -112,9 +113,7 @@ class Robot
         } elseif ($this->aspect == array_search('SOUTH', $this->compass)) {
             $newLocation = $this->getNewLocation(0, -1);
 
-            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
-
-            if ($square !== null) {
+            if ($this->isValidSquare($newLocation)) {
                 $this->location = $newLocation;
             } else {
                 return;
@@ -122,9 +121,7 @@ class Robot
         } elseif ($this->aspect == array_search('WEST', $this->compass)) {
             $newLocation = $this->getNewLocation(-1, 0);
 
-            $square = $this->tabletop->getSquare($newLocation['x'], $newLocation['y']);
-
-            if ($square !== null) {
+            if ($this->isValidSquare($newLocation)) {
                 $this->location = $newLocation;
             } else {
                 return;
@@ -155,5 +152,19 @@ class Robot
         ];
 
         return $newLocation;
+    }
+
+    private function isValidSquare($newLocation)
+    {
+        $square =   $this->tabletop->getSquare(
+                        $newLocation['x'],
+                        $newLocation['y']
+                    );
+
+        if ($square !== null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

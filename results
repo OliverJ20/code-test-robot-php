@@ -18,6 +18,6 @@ Trying to test negative index get square (TabletopTest::testNegativeIndexGetSqua
 -----------------------------------------------------------------------------------------------
 
 
-Time: 185 ms, Memory: 5.50Mb
+Time: 188 ms, Memory: 5.50Mb
 
 OK (13 tests, 62 assertions)

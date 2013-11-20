@@ -6,7 +6,11 @@ class Tabletop
 
     public function __construct($xMax = 1, $yMax = 1)
     {
-        $this->tabletop = array_fill(0, $xMax, array_fill(0, $yMax, new Square));
+        $this->tabletop =   array_fill(
+                                0,
+                                $xMax,
+                                array_fill(0, $yMax, new Square)
+                            );
     }
 
     public function getXMax()
