@@ -19,13 +19,13 @@ class Robot
 
     public function report()
     {
-        if( $this->location['x'] === NULL || $this->location['y'] === NULL || $this->aspect === NULL)
+        if($this->hasBeenPlaced())
         {
-            return '';
+            return 'Output: ' . $this->location['x'] . ', ' . $this->location['y'] . ', ' . $this->compass[$this->aspect];
         }
         else
         {
-            return 'Output: ' . $this->location['x'] . ', ' . $this->location['y'] . ', ' . $this->compass[$this->aspect];
+            return '';
         }
     }
 
@@ -33,7 +33,7 @@ class Robot
     {
         $tmpAspect = array_search($aspectInString, $this->compass);
 
-        if($this->tabletop->isValidXY($x, $y) &&  $tmpAspect !== false)
+        if($this->tabletop->isValidXY($x, $y) && $tmpAspect !== FALSE)
         {
             $this->location['x'] = $x;
             $this->location['y'] = $y;
@@ -44,5 +44,45 @@ class Robot
             return;
     }
 
-    
+    public function left()
+    {
+        if(!$this->hasBeenPlaced())
+        {
+            return;
+        }
+        elseif($this->tabletop->isValidXY($this->location['x'], $this->location['y'], $this->compass[$this->aspect]))
+        {
+            $this->aspect -= 1;
+
+            if($this->aspect < 0)
+                $this->aspect = 3;
+        }
+        else
+            return;
+    }
+
+    public function right()
+    {
+        if(!$this->hasBeenPlaced())
+        {
+            return;
+        }
+        elseif($this->tabletop->isValidXY($this->location['x'], $this->location['y'], $this->compass[$this->aspect]))
+        {
+            $this->aspect += 1;
+
+            if($this->aspect >= sizeof($this->compass))
+                $this->aspect = 0;
+        }
+        else
+            return;    
+    }
+
+    private function hasBeenPlaced()
+    {
+        if($this->location['x'] === NULL || $this->location['y'] === NULL || $this->aspect === NULL)
+            return FALSE;
+        else
+            return TRUE;
+    }
 }

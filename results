@@ -1,0 +1,22 @@
+Codeception PHP Testing Framework v1.8.0.1
+Powered by PHPUnit 3.7.28 by Sebastian Bergmann.
+
+Unit Tests (12) -------------------------------------------------------------------------------
+Trying to test new (RobotTest::testNew)                                                   Ok
+Trying to test robot off table report (RobotTest::testRobotOffTableReport)                Ok
+Trying to test place then report (RobotTest::testPlaceThenReport)                         Ok
+Trying to test left (RobotTest::testLeft)                                                 Ok
+Trying to test right (RobotTest::testRight)                                               Ok
+Trying to test new (SquareTest::testNew)                                                  Ok
+Trying to test robot can occupy (SquareTest::testRobotCanOccupy)                          Ok
+Trying to test new (TabletopTest::testNew)                                                Ok
+Trying to test get x max (TabletopTest::testGetXMax)                                      Ok
+Trying to test get y max (TabletopTest::testGetYMax)                                      Ok
+Trying to test get square (TabletopTest::testGetSquare)                                   Ok
+Trying to test negative index get square (TabletopTest::testNegativeIndexGetSquare)       Ok
+-----------------------------------------------------------------------------------------------
+
+
+Time: 178 ms, Memory: 5.50Mb
+
+OK (12 tests, 37 assertions)

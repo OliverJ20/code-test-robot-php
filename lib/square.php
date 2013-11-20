@@ -4,6 +4,6 @@ class Square
 {
     public function robotCanOccupy()
     {
-        return true;
+        return TRUE;
     }
 }

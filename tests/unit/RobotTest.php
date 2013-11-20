@@ -86,10 +86,15 @@ class RobotTest extends \Codeception\TestCase\Test
 
     public function testLeft()
     {
+        //robot not placed
+        $this->robot->left();
+        $this->assertEquals('', $this->robot->report());
+
         //initial placement of robot
         $this->robot->place(0, 0, 'NORTH');
         $this->assertEquals('Output: 0, 0, NORTH', $this->robot->report());
 
+        //test left()
         $this->robot->left();
         $this->assertEquals('Output: 0, 0, WEST', $this->robot->report());
 
@@ -100,6 +105,30 @@ class RobotTest extends \Codeception\TestCase\Test
         $this->assertEquals('Output: 0, 0, EAST', $this->robot->report());
 
         $this->robot->left();
+        $this->assertEquals('Output: 0, 0, NORTH', $this->robot->report());
+    }
+
+    public function testRight()
+    {
+        //robot not placed
+        $this->robot->right();
+        $this->assertEquals('', $this->robot->report());
+
+        //initial placement of robot
+        $this->robot->place(0, 0, 'NORTH');
+        $this->assertEquals('Output: 0, 0, NORTH', $this->robot->report());
+
+        //test right()
+        $this->robot->right();
+        $this->assertEquals('Output: 0, 0, EAST', $this->robot->report());
+
+        $this->robot->right();
+        $this->assertEquals('Output: 0, 0, SOUTH', $this->robot->report());
+
+        $this->robot->right();
+        $this->assertEquals('Output: 0, 0, WEST', $this->robot->report());
+
+        $this->robot->right();
         $this->assertEquals('Output: 0, 0, NORTH', $this->robot->report());
     }
 

@@ -32,8 +32,8 @@ class Tabletop
         if( is_int($x) && is_int($y) &&
             $x >= 0 && $y >= 0 &&
             $x < $this->getXMax() && $y < $this->getYMax())
-            return true;
+            return TRUE;
         else
-            return false;
+            return FALSE;
     }
 }
