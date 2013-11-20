@@ -57,8 +57,4 @@ class CommandParserTest extends \Codeception\TestCase\Test
         $this->assertInstanceOf('CommandParser', $commandParser);
         $this->assertNull($commandParser->getCommands());
     }
-
-    public function testInvalidFileNew()
-    {
-    }
 }

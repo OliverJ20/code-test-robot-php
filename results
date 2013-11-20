@@ -1,9 +1,8 @@
 Codeception PHP Testing Framework v1.8.0.1
 Powered by PHPUnit 3.7.28 by Sebastian Bergmann.
 
-Unit Tests (15) -------------------------------------------------------------------------------
+Unit Tests (14) -------------------------------------------------------------------------------
 Trying to test new (CommandParserTest::testNew)                                           Ok
-Trying to test invalid file new (CommandParserTest::testInvalidFileNew)                   Ok
 Trying to test new (RobotTest::testNew)                                                   Ok
 Trying to test robot off table report (RobotTest::testRobotOffTableReport)                Ok
 Trying to test place then report (RobotTest::testPlaceThenReport)                         Ok
@@ -20,6 +19,6 @@ Trying to test negative index get square (TabletopTest::testNegativeIndexGetSqua
 -----------------------------------------------------------------------------------------------
 
 
-Time: 203 ms, Memory: 5.50Mb
+Time: 206 ms, Memory: 5.50Mb
 
-OK (15 tests, 70 assertions)
+OK (14 tests, 70 assertions)
