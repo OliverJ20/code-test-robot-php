@@ -1,7 +1,7 @@
 <?php
 use Codeception\Util\Stub;
 
-require 'lib/tabletop.php';
+require_once 'lib/tabletop.php';
 
 class TabletopTest extends \Codeception\TestCase\Test
 {
@@ -39,5 +39,12 @@ class TabletopTest extends \Codeception\TestCase\Test
     public function testGetSquare()
     {
         $this->assertInstanceOf('Square', $this->tabletop->getSquare(2, 3));
+    }
+
+    public function testNegativeIndexGetSquare()
+    {
+        $this->assertNull($this->tabletop->getSquare(-2, -3));
+        $this->assertNull($this->tabletop->getSquare(1, -3));
+        $this->assertNull($this->tabletop->getSquare(-2, 1));
     }
 }
