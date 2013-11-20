@@ -11,10 +11,7 @@ class Robot
     {
         $this->tabletop = $tabletop;
 
-        $this->location = [
-            'x' => null,
-            'y' => null
-        ];
+        $this->location =   ['x' => null, 'y' => null];
     }
 
     public function report()
